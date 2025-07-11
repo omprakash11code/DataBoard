@@ -1,0 +1,20 @@
+<h2>Add Data</h2>
+
+<form [formGroup]="addForm" (ngSubmit)="onSubmit()">
+  <label>Full Name:</label>
+  <input formControlName="fullName" type="text" /><br />
+
+  <label>Enrollment:</label>
+  <input formControlName="enrollment" type="text" /><br />
+
+  <label>Program:</label>
+  <input formControlName="program" type="text" /><br />
+
+  <label>Date:</label>
+  <input formControlName="date" type="date" /><br />
+
+  <label>Remarks:</label>
+  <textarea formControlName="remarks"></textarea><br />
+
+  <button type="submit">Save</button>
+</form>

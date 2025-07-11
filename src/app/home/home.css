@@ -1,0 +1,243 @@
+h1 {
+  text-align: center;
+  margin-top: 40px;
+  font-size: 2.8rem;
+  color: #222;
+  font-weight: 700;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+p {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 1.2rem;
+  color: #666;
+  font-style: italic;
+}
+
+table {
+  width: 50%;
+  margin: 20px auto 30px auto;
+  border-collapse: collapse;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  overflow: hidden;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #fff;
+}
+
+thead {
+  background: linear-gradient(135deg, #4a90e2, #007bff);
+  color: white;
+}
+
+th, td {
+  padding: 14px 20px;
+  text-align: left;
+  font-size: 1rem;
+  border-bottom: 1px solid #eee;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+tbody tr:hover {
+  background-color: #f0f8ff;
+}
+
+input[type="text"],
+input[type="date"] {
+  width: 100%;
+  padding: 8px 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="date"]:focus {
+  border-color: #4a90e2;
+  outline: none;
+  box-shadow: 0 0 6px rgba(74, 144, 226, 0.5);
+}
+
+button {
+  padding: 8px 16px;
+  margin: 0 4px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  color: white;
+  transition: background-color 0.3s ease, transform 0.15s ease;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+button:hover {
+  transform: scale(1.05);
+}
+
+button:nth-child(1) { 
+  background: linear-gradient(135deg, #f39c12, #e67e22);
+}
+
+button:nth-child(1):hover {
+  background: linear-gradient(135deg, #d48806, #ca6b03);
+}
+
+button:nth-child(2) { 
+  background: linear-gradient(135deg, #e74c3c, #c0392b);
+}
+
+button:nth-child(2):hover {
+  background: linear-gradient(135deg, #b03a2e, #962d22);
+}
+
+.add-data-container {
+  text-align: center;
+  margin: 40px 0 60px 0;
+}
+
+.add-data-btn {
+  margin-top: 50px;
+  background: linear-gradient(135deg, #28a745, #218838);
+  color: white;
+  padding: 14px 32px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(40, 167, 69, 0.6);
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.add-data-btn:hover {
+  background: linear-gradient(135deg, #218838, #1b6d2a);
+  transform: scale(1.05);
+}
+
+@media (max-width: 768px) {
+  table {
+    width: 95%;
+  }
+
+  th, td {
+    padding: 12px 10px;
+    font-size: 0.9rem;
+  }
+
+  button {
+    padding: 6px 12px;
+    font-size: 0.85rem;
+  }
+
+  .add-data-btn {
+    font-size: 1rem;
+    padding: 12px 28px;
+  }
+}
+
+@media (max-width: 480px) {
+  table,
+  thead,
+  tbody,
+  th,
+  td,
+  tr {
+    display: block;
+  }
+
+  thead tr {
+    display: none;
+  }
+
+  tbody tr {
+    margin-bottom: 20px;
+    border-radius: 12px;
+    background: #f9f9f9;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.05);
+    padding: 15px;
+  }
+
+  tbody td {
+    padding-left: 50%;
+    position: relative;
+    font-size: 0.9rem;
+  }
+
+  tbody td::before {
+    content: attr(data-label);
+    position: absolute;
+    left: 15px;
+    top: 15px;
+    font-weight: 700;
+    color: #555;
+  }
+
+  tbody td:last-child {
+    padding-left: 0;
+    text-align: center;
+  }
+}
+
+.table-header {
+  width: 100%;
+  margin: 40px auto 10px auto; 
+  display: flex;
+  justify-content: flex-end; 
+  align-items: center;
+}
+
+.edit-box {
+  background: #f9f9f9;
+  border: 1px solid #ddd;
+  padding: 15px;
+  margin-top: 5px;
+  border-radius: 8px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+}
+
+.edit-form-inline {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+
+.edit-form-inline input {
+  flex: 1 1 20%;
+  min-width: 120px;
+  padding: 8px 10px;
+  font-size: 0.9rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.form-buttons {
+  display: flex;
+  gap: 10px;
+  flex: 1 1 100%;
+  margin-top: 10px;
+  justify-content: flex-end;
+}
+
+.form-buttons button.update {
+  background: linear-gradient(135deg, #f39c12, #e67e22);
+  color: white;
+}
+
+.form-buttons button.cancel {
+  background: linear-gradient(135deg, #e74c3c, #c0392b);
+  color: white;
+}
+
+.form-buttons button:hover {
+  opacity: 0.9;
+  transform: scale(1.02);
+}

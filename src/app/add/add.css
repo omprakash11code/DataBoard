@@ -1,0 +1,129 @@
+/* Global reset for smoother consistency */
+* {
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Centered container with soft glassmorphism look */
+form {
+  max-width: 520px;
+  margin: 60px auto;
+  padding: 40px 35px;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+  display: flex;
+  flex-direction: column;
+  animation: fadeIn 0.6s ease-in-out;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+form:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.15);
+}
+
+/* Animated header */
+h2 {
+  text-align: center;
+  margin-bottom: 35px;
+  font-size: 30px;
+  font-weight: 700;
+  color: #ffffff;
+  background: linear-gradient(90deg, #007bff, #00c6ff);
+  padding: 15px;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0, 123, 255, 0.4);
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.25);
+}
+
+/* Label styles */
+label {
+  margin-bottom: 6px;
+  color: #444;
+  font-weight: 600;
+  font-size: 15px;
+}
+
+/* Input and Textarea styles */
+input[type="text"],
+input[type="date"],
+textarea {
+  padding: 12px 14px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  font-size: 15px;
+  background-color: #f9f9f9;
+  transition: all 0.3s ease;
+}
+
+input:focus,
+textarea:focus {
+  border-color: #007bff;
+  background-color: #ffffff;
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.25);
+  outline: none;
+}
+
+/* Textarea tweaks */
+textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+/* Save Button */
+button[type="submit"] {
+  padding: 14px 24px;
+  background: linear-gradient(135deg, #00b4db, #0083b0);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 14px rgba(0, 179, 255, 0.35);
+}
+
+button[type="submit"]:hover {
+  background: linear-gradient(135deg, #0076a3, #005d80);
+  transform: scale(1.04);
+  box-shadow: 0 10px 20px rgba(0, 140, 200, 0.5);
+}
+
+/* Entrance animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+  form {
+    padding: 30px 20px;
+    margin: 25px 10px;
+  }
+
+  h2 {
+    font-size: 24px;
+    padding: 12px;
+  }
+
+  input,
+  textarea {
+    font-size: 16px;
+  }
+
+  button[type="submit"] {
+    font-size: 16px;
+  }
+}

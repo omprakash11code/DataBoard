@@ -1,0 +1,67 @@
+
+ <app-menu></app-menu>
+ <div>
+   <router-outlet></router-outlet>
+     <app-header></app-header>
+ </div>
+
+
+<div class="content-wrapper">
+  <!-- ADD DATA button -->
+  <div class="table-header">
+    <button class="add-data-btn" [routerLink]="['/add']">ADD DATA</button>
+  </div>
+
+  <!-- No data message -->
+  <div *ngIf="data.length === 0" class="no-data-msg">
+    <p>No data available. Click 'ADD DATA' to create one.</p>
+  </div>
+
+  <!-- Table -->
+  <div class="table-wrapper" *ngIf="data.length > 0">
+    <table>
+      <thead>
+        <tr>
+          <th>Full Name</th>
+          <th>Enrollment</th>
+          <th>Program</th>
+          <th>Date</th>
+          <th>Remarks</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+    <tbody>
+      <ng-container *ngFor="let item of data; let i = index">
+        <tr *ngIf="editingIndex !== i">
+          <td>{{ item.fullName }}</td>
+          <td>{{ item.enrollment }}</td>
+          <td>{{ item.program }}</td>
+          <td>{{ item.date }}</td>
+          <td>{{ item.remarks }}</td>
+          <td>
+            <button class="edit" (click)="editItem(i)">Edit</button>
+            <button class="delete" (click)="deleteItem(i)">Delete</button>
+          </td>
+        </tr>
+        <tr *ngIf="editingIndex === i">
+          <td colspan="6">
+            <div class="edit-box">
+              <form (ngSubmit)="updateItem()" class="edit-form-inline">
+                <input [(ngModel)]="editedItem.fullName" name="fullName" placeholder="Full Name" required />
+                <input [(ngModel)]="editedItem.enrollment" name="enrollment" placeholder="Enrollment" required />
+                <input [(ngModel)]="editedItem.program" name="program" placeholder="Program" required />
+                <input type="date" [(ngModel)]="editedItem.date" name="date" required />
+                <input [(ngModel)]="editedItem.remarks" name="remarks" placeholder="Remarks" />
+
+                <div class="form-buttons">
+                  <button type="submit" class="update">Update</button>
+                  <button type="button" class="cancel" (click)="cancelEdit()">Cancel</button>
+                </div>
+              </form>
+            </div>
+          </td>
+        </tr>
+      </ng-container>
+    </tbody>
+  </table>
+</div>
