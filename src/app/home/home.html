@@ -30,38 +30,23 @@
           <th>Actions</th>
         </tr>
       </thead>
-    <tbody>
-      <ng-container *ngFor="let item of data; let i = index">
-        <tr *ngIf="editingIndex !== i">
-          <td>{{ item.fullName }}</td>
-          <td>{{ item.enrollment }}</td>
+      <tbody>
+        <tr *ngFor="let item of data">
+          <td>{{ item.FullName }}</td>
+          <td>{{ item.Enrolment }}</td>
           <td>{{ item.program }}</td>
-          <td>{{ item.date }}</td>
+          <td>{{ item.date | date: 'yyyy-MM-dd' }}</td>
           <td>{{ item.remarks }}</td>
           <td>
-            <button class="edit" (click)="editItem(i)">Edit</button>
-            <button class="delete" (click)="deleteItem(i)">Delete</button>
+<button *ngIf="item.id != null" class="edit" (click)="navigateToEdit(item.id)">
+  Edit
+</button>
+<button *ngIf="item.id != null" class="delete" (click)="deleteItemById(item.id)">
+  Delete
+</button>
           </td>
         </tr>
-        <tr *ngIf="editingIndex === i">
-          <td colspan="6">
-            <div class="edit-box">
-              <form (ngSubmit)="updateItem()" class="edit-form-inline">
-                <input [(ngModel)]="editedItem.fullName" name="fullName" placeholder="Full Name" required />
-                <input [(ngModel)]="editedItem.enrollment" name="enrollment" placeholder="Enrollment" required />
-                <input [(ngModel)]="editedItem.program" name="program" placeholder="Program" required />
-                <input type="date" [(ngModel)]="editedItem.date" name="date" required />
-                <input [(ngModel)]="editedItem.remarks" name="remarks" placeholder="Remarks" />
-
-                <div class="form-buttons">
-                  <button type="submit" class="update">Update</button>
-                  <button type="button" class="cancel" (click)="cancelEdit()">Cancel</button>
-                </div>
-              </form>
-            </div>
-          </td>
-        </tr>
-      </ng-container>
-    </tbody>
-  </table>
+      </tbody>
+    </table>
+  </div>
 </div>

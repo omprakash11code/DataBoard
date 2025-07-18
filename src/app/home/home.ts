@@ -1,59 +1,53 @@
 import { Component, OnInit } from '@angular/core';
-import { RouterLink, Router, RouterModule ,} from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
 import { Menu } from '../menu/menu';
 import { Header } from '../header/header';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { Auth, DataItem } from '../service/auth';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [RouterLink, Menu, Header, RouterModule,FormsModule,CommonModule],
+  imports: [RouterModule, Menu, Header, CommonModule],
   templateUrl: './home.html',
   styleUrls: ['./home.css']
 })
 export class Home implements OnInit {
-  data: any[] = [];
-  editingIndex: number | null = null;
-  editedItem: any = {};
+  data: DataItem[] = [];
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private authService: Auth) {}
 
   ngOnInit() {
     this.loadData();
   }
 
+  // Fetch all items from backend
   loadData() {
-    const raw = localStorage.getItem('formData');
-    this.data = raw ? JSON.parse(raw) : [];
+    this.authService.getAllData().subscribe({
+      next: items => this.data = items,
+      error: err => console.error('Error loading data:', err)
+    });
   }
 
-  deleteItem(index: number) {
-    this.data.splice(index, 1);
-    localStorage.setItem('formData', JSON.stringify(this.data));
-    this.loadData();
-  }
-
-  editItem(index: number) {
-    this.editingIndex = index;
-    this.editedItem = { ...this.data[index] };
-  }
-
-  updateItem() {
-    if (this.editingIndex !== null) {
-      this.data[this.editingIndex] = this.editedItem;
-      localStorage.setItem('formData', JSON.stringify(this.data));
-      this.editingIndex = null;
-      this.editedItem = {};
-      this.loadData();
+  // Delete an item by its numeric ID
+  deleteItemById(id: number) {
+    if (confirm('Are you sure you want to delete this item?')) {
+      this.authService.deleteData(id).subscribe({
+        next: () => this.loadData(),
+        error: err => {
+          console.error('Error deleting item:', err);
+          alert('Delete failed.');
+        }
+      });
     }
   }
 
-  cancelEdit() {
-    this.editingIndex = null;
-    this.editedItem = {};
+  // Navigate to the edit form with item ID
+  navigateToEdit(id: number) {
+    this.router.navigate(['/edit', id]);
   }
 
+  // Navigate to the add form
   navigateToAddData() {
     this.router.navigate(['/add']);
   }
